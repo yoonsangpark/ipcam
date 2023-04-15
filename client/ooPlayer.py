@@ -49,11 +49,6 @@ class ooPlayer:
     def set_volume(self, volume):
         return self.media.audio_set_volume(volume)
 
-
-
-    def set_volume(self, volume):
-        return self.media.audio_set_volume(volume)
-
     def get_state(self):
         state = self.media.get_state()
         if state == vlc.State.Playing:
