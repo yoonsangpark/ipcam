@@ -1,9 +1,14 @@
+#!/usr/bin/env python
+# -*- coding:utf-8 vi:ts=4:noexpandtab
+# Simple RTSP client 
+
 import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QPainter, QColor, QFont
 from PyQt5 import QtCore
-
 from  ooPlayer import ooPlayer
+
+rtsp_url="rtsp://192.168.10.104:8554/test"
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -27,10 +32,22 @@ class Ui_Form(object):
         self.pushButton_area_show.setGeometry(QtCore.QRect(660, 10 , 100, 30))
         self.pushButton_area_show.clicked.connect(self.play)
 
-	# Stop
+	# Pause
+        self.pushButton_area_show = QPushButton(Form)
+        self.pushButton_area_show.setText("Pause")
+        self.pushButton_area_show.setGeometry(QtCore.QRect(660, 60 , 100, 30))
+        self.pushButton_area_show.clicked.connect(self.pause)
+        
+        # Resume
+        self.pushButton_area_show = QPushButton(Form)
+        self.pushButton_area_show.setText("Resume")
+        self.pushButton_area_show.setGeometry(QtCore.QRect(660, 110 , 100, 30))
+        self.pushButton_area_show.clicked.connect(self.resume)
+        
+        # Stop	
         self.pushButton_area_show = QPushButton(Form)
         self.pushButton_area_show.setText("Stop")
-        self.pushButton_area_show.setGeometry(QtCore.QRect(660, 50, 100, 30))
+        self.pushButton_area_show.setGeometry(QtCore.QRect(660, 160, 100, 30))
         self.pushButton_area_show.clicked.connect(self.stop)
 
         self.retranslateUi(Form)
@@ -41,7 +58,13 @@ class Ui_Form(object):
         Form.setWindowTitle(_translate("Form", "Form"))
 
     def play(self):
-        self.player.play("rtsp://192.168.10.104:8554/test")
+        self.player.play(rtsp_url)
+
+    def pause(self):
+        self.player.pause()
+
+    def resume(self):
+        self.player.resume()
 
     def stop(self):
         self.player.stop()
